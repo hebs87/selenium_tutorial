@@ -1,13 +1,13 @@
 # ------------------------------ TEST TO SEE IF WEBDRIVER CONNECTS SUCCESSFULLY ------------------------------
-from selenium import webdriver
-
-driver = webdriver.Chrome()
-driver.get('http://www.google.com/');
-search_box = driver.find_element_by_name('q')
-search_box.send_keys('ChromeDriver')
-search_box.submit()
-driver.quit()
-
+# from selenium import webdriver
+#
+# driver = webdriver.Chrome()
+# driver.get('http://www.google.com/');
+# search_box = driver.find_element_by_name('q')
+# search_box.send_keys('ChromeDriver')
+# search_box.submit()
+# driver.quit()
+#
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
