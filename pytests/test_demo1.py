@@ -26,25 +26,13 @@ def test_num_is_the_same():
     assert 2 == 2, "Test failed because numbers aren't the same"
 
 
-# We can create setup and teardown methods using the fixture tag. First, we specify the pre-requisites and then
-# pass the name of the method (setup in this instance) into other methods that we want to associate it with, as
-# an argument. In the same method, we then use the yield statement, and then specify the teardown steps. So, the
-# order of events will be as follows:
-# 1) Setup/pre-requisite steps will run - e.g. opening and configuring browser
-# 2) The other test methods associated with it will run
-# 3) The teardown steps (specified after the yield statement) will run - e.g. closing browser and deleting cookies
-@pytest.fixture()
-def setup():
-    """
-    This test will run the pre-requisites, and then the teardown steps after the yield statement
-    """
-    print('I will be executed first')
-    yield
-    print('I will be executed last')
-
-
-def test_fixtureDemo(setup):
-    """
-    This test will be linked to the setup fixture and will run before any other tests
-    """
-    print('I will execute before all tests')
+# Linked to the setup fixture in the conftest.py file - no need to import it in, as pytest will automatically pick it up
+# Declaring the fixture in the mark.usefixtures tag directly above a class declaration will allow us the class to
+# inherit it, and it will be applied to all methods of that class, instead of having to call it in each method
+@pytest.mark.usefixtures('setup')
+class TestExample:
+    def test_fixture_demo(self):
+        """
+        This test will be linked to the setup fixture and will run before any other tests
+        """
+        print('I will execute before all tests')
